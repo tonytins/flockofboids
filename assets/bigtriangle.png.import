@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtms7rm73g8mg"
-path="res://.godot/imported/bigtriangle.png-d7e021be6246208d0fc3237382e083c4.ctex"
+path="res://.godot/imported/bigtriangle.png-e08cfcfcdd3e2099560b5cfcdcfdec95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bigtriangle.png"
-dest_files=["res://.godot/imported/bigtriangle.png-d7e021be6246208d0fc3237382e083c4.ctex"]
+source_file="res://assets/bigtriangle.png"
+dest_files=["res://.godot/imported/bigtriangle.png-e08cfcfcdd3e2099560b5cfcdcfdec95.ctex"]
 
 [params]
 

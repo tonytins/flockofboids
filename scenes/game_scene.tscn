@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://16a2gs77e6ut"]
 
-[ext_resource type="Script" path="res://game_scene.gd" id="1_4bt6j"]
-[ext_resource type="PackedScene" uid="uid://cxybqlg73cq5w" path="res://tile_map.tscn" id="2_js0sw"]
+[ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_4bt6j"]
+[ext_resource type="PackedScene" uid="uid://cxybqlg73cq5w" path="res://scenes/tile_map.tscn" id="2_js0sw"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource("1_4bt6j")
-num = 15
+num = 50
 
 [node name="Timer" type="Timer" parent="."]
 

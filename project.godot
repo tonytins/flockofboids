@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Flocks"
-run/main_scene="res://game_scene.tscn"
+config/name="Flocks of Boids"
+run/main_scene="res://scenes/game_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
