@@ -5,7 +5,7 @@ var boidsISee := []
 var vel: Vector2 = Vector2.ZERO
 @export var speed := 7.0
 var screensize: Vector2
-var movv := 48
+@export var movv := 48
 
 func _ready() -> void:
 	screensize = get_viewport_rect().size
@@ -42,12 +42,12 @@ func check_collision() -> void:
 	for ray in rayFolder:
 		var r: RayCast2D = ray
 		if r.is_colliding():
-			if r.get_collider().is_in_group("boid") or r.get_collider().is_in_group("blocks"):
+			if r.get_collider().is_in_group("blocks"):
 				var magi := (100/(r.get_collision_point() - global_position).length_squared())
-				vel -= (r.cast_to.rotated(rotation) * magi)
+				vel += (r.cast_to.rotated(rotation) * magi)
 
 func move() -> void:
-	global_position += vel
+	global_position -= vel
 	if global_position.x < 0:
 		global_position.x = screensize.x 
 	if global_position.x > screensize.x:

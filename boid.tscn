@@ -11,17 +11,15 @@ size = Vector2(16, 19)
 
 [node name="Boid" type="Area2D" groups=["boid"]]
 script = ExtResource("1_rc7dc")
-metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.57046
+texture = ExtResource("1_dar0g")
+offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(18.5, 0)
 shape = SubResource("RectangleShape2D_evwkm")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5708
-texture = ExtResource("1_dar0g")
-offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="Vision" type="Area2D" parent="."]
 rotation = -1.5708
