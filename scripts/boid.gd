@@ -8,16 +8,17 @@ var screensize: Vector2
 var motion := 48
 
 func _ready() -> void:
+	vel = Vector2(1.0, 1.0) * speed
 	screensize = get_viewport_rect().size
 	randomize()
 	
 func _physics_process(delta: float) -> void:
-	boids()
+	await boids()
 	# check_collision("blocks")
 	vel = vel.normalized() * speed
 	move()
 	rotation = lerp_angle(rotation, vel.angle_to_point(Vector2.UP), 0.4)
-	
+
 func boids() -> void:
 	if boidsISee:
 		var numOfBoids := boidsISee.size()
