@@ -1,8 +1,8 @@
 extends Area2D
 
-@onready var rayFolder := $InnerVision.get_children()
+@onready var rayFolder := $RayFolder.get_children()
 var boidsISee := []
-var vel: Vector2 = Vector2.ZERO
+var vel := Vector2.ZERO
 @export var speed := 7.0
 var screensize: Vector2
 @export var movv := 48
@@ -11,7 +11,7 @@ func _ready() -> void:
 	screensize = get_viewport_rect().size
 	randomize()
 	
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	boids()
 	check_collision()
 	vel = vel.normalized() * speed

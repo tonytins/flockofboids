@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dtms7rm73g8mg" path="res://bigtriangle.png" id="1_dar0g"]
 [ext_resource type="Script" path="res://boid.gd" id="1_rc7dc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_evwkm"]
-size = Vector2(95, 58)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4yjb"]
+radius = 35.0
+height = 113.157
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7e7"]
 size = Vector2(16, 19)
@@ -18,8 +19,9 @@ texture = ExtResource("1_dar0g")
 offset = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(18.5, 0)
-shape = SubResource("RectangleShape2D_evwkm")
+position = Vector2(1, -3.48787e-16)
+scale = Vector2(1.92062, 0.671634)
+shape = SubResource("CapsuleShape2D_j4yjb")
 
 [node name="Vision" type="Area2D" parent="."]
 rotation = -1.5708
@@ -28,24 +30,56 @@ rotation = -1.5708
 position = Vector2(-2.18557e-08, 0.5)
 shape = SubResource("RectangleShape2D_3j7e7")
 
-[node name="InnerVision" type="Node2D" parent="."]
+[node name="RayFolder" type="Node2D" parent="."]
 rotation = -1.5708
 
-[node name="RayCast2D" type="RayCast2D" parent="InnerVision"]
+[node name="FrontRayCast2D" type="RayCast2D" parent="RayFolder"]
 rotation = -0.333356
-target_position = Vector2(15.7338, 34.0213)
+scale = Vector2(1, 1)
+target_position = Vector2(10.064, 32.058)
+metadata/_edit_lock_ = true
 
-[node name="RayCast2D2" type="RayCast2D" parent="InnerVision"]
+[node name="FrontRayCast2D2" type="RayCast2D" parent="RayFolder"]
 rotation = -0.333356
-target_position = Vector2(-32.0947, 13.2262)
+scale = Vector2(1, 1)
+target_position = Vector2(-34.0213, 15.7337)
+metadata/_edit_lock_ = true
 
-[node name="RayCast2D3" type="RayCast2D" parent="InnerVision"]
+[node name="FrontRayCast2D3" type="RayCast2D" parent="RayFolder"]
 rotation = -0.07866
+scale = Vector2(1, 1)
 target_position = Vector2(-0.41299, 56.1412)
+metadata/_edit_lock_ = true
 
-[node name="RayCast2D4" type="RayCast2D" parent="InnerVision"]
+[node name="FrontRayCast2D4" type="RayCast2D" parent="RayFolder"]
 rotation = -0.07866
+scale = Vector2(1, 1)
 target_position = Vector2(-7.68084, 46.5404)
+metadata/_edit_lock_ = true
+
+[node name="BackRayCast2D" type="RayCast2D" parent="RayFolder"]
+rotation = 2.84
+scale = Vector2(1, 1)
+target_position = Vector2(10.064, 32.058)
+metadata/_edit_lock_ = true
+
+[node name="BackRayCast2D2" type="RayCast2D" parent="RayFolder"]
+rotation = 2.84
+scale = Vector2(1, 1)
+target_position = Vector2(-34.0213, 15.7337)
+metadata/_edit_lock_ = true
+
+[node name="BackRayCast2D3" type="RayCast2D" parent="RayFolder"]
+rotation = 3.09469
+scale = Vector2(1, 1)
+target_position = Vector2(-0.41299, 56.1412)
+metadata/_edit_lock_ = true
+
+[node name="BackRayCast2D4" type="RayCast2D" parent="RayFolder"]
+rotation = 3.09469
+scale = Vector2(1, 1)
+target_position = Vector2(-7.68084, 46.5404)
+metadata/_edit_lock_ = true
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]

@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var num := 100
+@export var num := 10
 @export var margin := 100
 var screensize : Vector2
 
