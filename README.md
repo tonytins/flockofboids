@@ -4,4 +4,4 @@ A simple artifical life simulation written in GDScript, and based on [this tutor
 
 ## License
 
-I license this project under the BSD-3-Clause license - see [LICENSE](LICENSE) for details.
+I hereby waive this project under the public domain - see [UNLICENSE](UNLICENSE) for details.
