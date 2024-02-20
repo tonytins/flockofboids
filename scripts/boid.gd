@@ -13,7 +13,7 @@ func _ready() -> void:
 	randomize()
 	
 func _physics_process(delta: float) -> void:
-	await boids()
+	boids()
 	# check_collision("blocks")
 	vel = vel.normalized() * speed
 	move()
