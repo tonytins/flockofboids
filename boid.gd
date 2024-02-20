@@ -16,7 +16,7 @@ func _physics_process(delta):
 	check_collision()
 	vel = vel.normalized() * speed
 	move()
-	rotation = lerp_angle(rotation, vel.angle_to_point(Vector2.ZERO), 0.4)
+	rotation = lerp_angle(rotation, vel.angle_to_point(Vector2.UP), 0.4)
 	
 func boids() -> void:
 	if boidsISee:
@@ -44,10 +44,10 @@ func check_collision() -> void:
 		if r.is_colliding():
 			if r.get_collider().is_in_group("blocks"):
 				var magi := (100/(r.get_collision_point() - global_position).length_squared())
-				vel += (r.cast_to.rotated(rotation) * magi)
+				vel -= (r.target_position.rotated(rotation) * magi)
 
 func move() -> void:
-	global_position -= vel
+	global_position += vel
 	if global_position.x < 0:
 		global_position.x = screensize.x 
 	if global_position.x > screensize.x:
