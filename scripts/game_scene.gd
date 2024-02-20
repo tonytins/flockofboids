@@ -17,7 +17,7 @@ func _on_timer_timeout() -> void:
 			spawn_boid()
 
 func spawn_boid() -> void:
-	var boid: Area2D = preload("res://boid.tscn").instantiate()
+	var boid: Area2D = preload("res://scenes/boid.tscn").instantiate()
 	$BoidGroup.add_child(boid)
 	boid.modulate = Color(randf(), randf(), randf(), 1)
 	boid.global_position = Vector2((randf_range(margin, screensize.x - margin)), (randf_range(margin, screensize.y - margin)))
