@@ -3,9 +3,9 @@ extends Area2D
 @onready var rayFolder := $RayFolder.get_children()
 var boidsISee := []
 var vel := Vector2.ZERO
-@export var speed := 7.0
+var speed := 7.0
 var screensize: Vector2
-@export var movv := 48
+var motion := 48
 
 func _ready() -> void:
 	screensize = get_viewport_rect().size
@@ -13,7 +13,7 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	boids()
-	check_collision()
+	# check_collision("blocks")
 	vel = vel.normalized() * speed
 	move()
 	rotation = lerp_angle(rotation, vel.angle_to_point(Vector2.UP), 0.4)
@@ -27,24 +27,25 @@ func boids() -> void:
 		for boid in boidsISee:
 			avgVel += boid.vel
 			avgPos += boid.position
-			steerAway -= (boid.global_position - global_position) * (movv/(global_position - boid.global_position).length())
+			steerAway -= (boid.global_position - global_position) * (motion/(global_position - boid.global_position).length())
 			
 		avgVel /= numOfBoids
 		vel += (avgVel - vel)/2
 		
 		avgPos /= numOfBoids
-		vel += (avgVel - position)
+		vel += (avgPos - position)
 		
 		steerAway /= numOfBoids
 		vel += (steerAway)
 
-func check_collision() -> void:
+func check_collision(group: String) -> void:
 	for ray in rayFolder:
 		var r: RayCast2D = ray
 		if r.is_colliding():
-			if r.get_collider().is_in_group("blocks"):
+			if r.get_collider().is_in_group(group):
 				var magi := (100/(r.get_collision_point() - global_position).length_squared())
 				vel -= (r.target_position.rotated(rotation) * magi)
+		pass
 
 func move() -> void:
 	global_position += vel
