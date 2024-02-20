@@ -1,23 +1,24 @@
 extends Area2D
 
-@onready var rayFolder := $RayFolder.get_children()
+@onready var rayFolder := $InnerVision.get_children()
 var boidsISee := []
 var vel: Vector2 = Vector2.ZERO
-var speed := 7.0
+@export var speed := 7.0
 var screensize: Vector2
 var movv := 48
 
-func _ready():
+func _ready() -> void:
 	screensize = get_viewport_rect().size
 	randomize()
 	
 func _physics_process(delta):
-	# boids()
-	# check_collision()
+	boids()
+	check_collision()
 	vel = vel.normalized() * speed
-	# move()
+	move()
+	rotation = lerp_angle(rotation, vel.angle_to_point(Vector2.ZERO), 0.4)
 	
-func boids():
+func boids() -> void:
 	if boidsISee:
 		var numOfBoids := boidsISee.size()
 		var avgVel := Vector2.ZERO
@@ -26,12 +27,26 @@ func boids():
 		for boid in boidsISee:
 			avgVel += boid.vel
 			avgPos += boid.position
+			steerAway -= (boid.global_position - global_position) * (movv/(global_position - boid.global_position).length())
+			
+		avgVel /= numOfBoids
+		vel += (avgVel - vel)/2
+		
+		avgPos /= numOfBoids
+		vel += (avgVel - position)
+		
+		steerAway /= numOfBoids
+		vel += (steerAway)
 
-func check_collision():
-	pass
+func check_collision() -> void:
+	for ray in rayFolder:
+		var r: RayCast2D = ray
+		if r.is_colliding():
+			if r.get_collider().is_in_group("boid") or r.get_collider().is_in_group("blocks"):
+				var magi := (100/(r.get_collision_point() - global_position).length_squared())
+				vel -= (r.cast_to.rotated(rotation) * magi)
 
-# Boilerplate taken from example code
-func move():
+func move() -> void:
 	global_position += vel
 	if global_position.x < 0:
 		global_position.x = screensize.x 
@@ -43,11 +58,10 @@ func move():
 		global_position.y = 0
 
 
-func _on_vision_area_entered(area: Area2D):
+func _on_vision_area_entered(area: Area2D) -> void:
 	if area != self and area.is_in_group("boid"):
 		boidsISee.append(area)
-
-
-func _on_vision_area_exited(area: Area2D):
+		
+func _on_vision_area_exited(area: Area2D) -> void:
 	if area:
 		boidsISee.erase(area)

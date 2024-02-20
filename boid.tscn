@@ -4,17 +4,19 @@
 [ext_resource type="Script" path="res://boid.gd" id="1_rc7dc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evwkm"]
-size = Vector2(81, 58)
+size = Vector2(95, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7e7"]
 size = Vector2(16, 19)
 
-[node name="Boid" type="Area2D"]
+[node name="Boid" type="Area2D" groups=["boid"]]
 script = ExtResource("1_rc7dc")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11.5, 0)
+position = Vector2(18.5, 0)
 shape = SubResource("RectangleShape2D_evwkm")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
@@ -41,6 +43,7 @@ target_position = Vector2(-32.0947, 13.2262)
 
 [node name="RayCast2D3" type="RayCast2D" parent="InnerVision"]
 rotation = -0.07866
+target_position = Vector2(-0.41299, 56.1412)
 
 [node name="RayCast2D4" type="RayCast2D" parent="InnerVision"]
 rotation = -0.07866
