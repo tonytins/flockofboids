@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bixoody7jbf4o"]
+
+[ext_resource type="Texture2D" uid="uid://dtms7rm73g8mg" path="res://bigtriangle.png" id="1_dar0g"]
+[ext_resource type="Script" path="res://boid.gd" id="1_rc7dc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evwkm"]
+size = Vector2(81, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7e7"]
+size = Vector2(16, 19)
+
+[node name="Boid" type="Area2D"]
+script = ExtResource("1_rc7dc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11.5, 0)
+shape = SubResource("RectangleShape2D_evwkm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("1_dar0g")
+offset = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Vision" type="Area2D" parent="."]
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+position = Vector2(-2.18557e-08, 0.5)
+shape = SubResource("RectangleShape2D_3j7e7")
+
+[node name="InnerVision" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="RayCast2D" type="RayCast2D" parent="InnerVision"]
+rotation = -0.333356
+target_position = Vector2(15.7338, 34.0213)
+
+[node name="RayCast2D2" type="RayCast2D" parent="InnerVision"]
+rotation = -0.333356
+target_position = Vector2(-32.0947, 13.2262)
+
+[node name="RayCast2D3" type="RayCast2D" parent="InnerVision"]
+rotation = -0.07866
+
+[node name="RayCast2D4" type="RayCast2D" parent="InnerVision"]
+rotation = -0.07866
+target_position = Vector2(-7.68084, 46.5404)
+
+[connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]
